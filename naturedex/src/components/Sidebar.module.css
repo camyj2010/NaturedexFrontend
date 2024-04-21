@@ -17,6 +17,15 @@
 .sidebar.open {
     left: -300;
 }
+
+.closeicon {
+    margin-top: 10%;
+    cursor: pointer;
+}
+
+.closeicon:hover {
+    opacity: 0.7;
+}
   
 .closeButton {
     margin-top: auto;
