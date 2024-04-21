@@ -1,0 +1,15 @@
+.floatingButton {
+    position: fixed;
+    bottom: 2rem; /* Ajustamos la posición hacia arriba */
+    right: 2rem;  /* Ajustamos la posición hacia la izquierda */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #79AC78;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1; /* Asegura que el botón esté por encima del contenido */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar sensación de elevación */
+  }
