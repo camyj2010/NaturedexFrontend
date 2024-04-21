@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API = 'http://localhost:3001';
+const API = process.env.REACT_APP_BACKEND_URL;
 
 // POST REQUESTS
 export const loginRequest = async (email, password) => {
@@ -11,6 +11,15 @@ export const loginRequest = async (email, password) => {
 		return res;
 	} catch (err) {
         console.log('C murio')
+		throw err;
+	}
+};
+
+export const fetchUser = async (id) => {
+	try {
+		const res = await axios.get(`${API}/one/${id}`);
+		return res;
+	} catch (err) {
 		throw err;
 	}
 };
