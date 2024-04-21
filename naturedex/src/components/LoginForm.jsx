@@ -16,7 +16,7 @@ const LoginForm = () => {
       const res = await login(userData.email, userData.password);
 
       if (res.message === "Inicio de sesión exitoso") {
-        navigate('/gallery');
+        navigate('/my_entries');
       } else {
         // Manejar error de inicio de sesión
         alert(res.message);
