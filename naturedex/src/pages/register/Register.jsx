@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { redirect } from 'react-router-dom';
 import RegisterCSS from './Register.module.css'
+import { registerRequest } from '../../functions/register';
+import Swal from 'sweetalert2';
 
 export default function Register() {
 	const [name, setName] = useState('');
@@ -18,14 +21,20 @@ export default function Register() {
 		setPassword(event.target.value);
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const user = {
-			name: name,
-			email: email,
-			password: password
+		// Call the registerRequest function from the functions folder
+		const res = await registerRequest(name, email, password);
+		if (res.status === 201) {
+			return redirect('/login')
 		}
-		console.log(user);
+		else {
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Algo salio mal, intenta de nuevo",
+			});
+		}
 	}
 
 	return (
