@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 
 const PopUp = ({ isOpen, onClose }) => {
   const inputFileRef = useRef(null);
-  const { user, isUserAuthenticated,sendImage } = useContext(UserContext);
+  const { user, sendImage } = useContext(UserContext);
   console.log(user)
   if (!isOpen) {
     return null;
@@ -32,6 +32,47 @@ const PopUp = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleTakePicture = async () => {
+    const video = document.createElement('video');
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    // Grant access to the camera
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+    // Show the transmision of the camera in a video element
+    video.srcObject = stream;
+    video.play();
+
+    // Wait till the user take the picture
+    await new Promise((resolve) => video.onloadedmetadata = resolve);
+
+    // Draw the captured image in a canvas
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Stop camera transmission
+    stream.getTracks().forEach(track => track.stop());
+
+    // Convert the canvas into a PNG image
+    const imageUrl = canvas.toDataURL('image/png');
+
+    const formData = new FormData();
+    formData.append('file', imageUrl);
+    formData.append('upload_preset', 'naturedex');
+    formData.append('cloud_name', 'proyectogca');
+
+    try {
+      const response = await uploadImage(formData);
+      const cloudinaryUrl = response.data.secure_url;
+      console.log(cloudinaryUrl);
+      sendImage(user.id, cloudinaryUrl);
+    } catch (error) {
+      console.error('Error uploading image: ', error);
+    }
+  };
+
   return (
     <div className={PopUpCSS.modalOverlay}>
       <div className={PopUpCSS.modal}>
@@ -40,7 +81,7 @@ const PopUp = ({ isOpen, onClose }) => {
         </button>
         <p>Would you like to take a picture or to upload an image?</p>
         <div className={PopUpCSS.buttonContainer}>
-        <button className={PopUpCSS.confirmButton}>
+        <button className={PopUpCSS.confirmButton} onClick={handleTakePicture}>
             <svg  xmlns="http://www.w3.org/2000/svg"  width="49"  height="49"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-camera-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20h-7a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v3.5" /><path d="M12 16a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" /><path d="M19 22v-6" /><path d="M22 19l-3 -3l-3 3" /></svg>
             <p>Take a Picture</p>
           </button>
