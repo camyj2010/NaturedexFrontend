@@ -6,9 +6,10 @@ h1 {
 
 .header {
     display: flex;
-    justify-content: space-between;
+		width: 100%;
+    justify-content: flex-start;
     align-items: center;
-    padding: 1rem;
+		padding: 1rem 0;
   }
   
 .menuContainer {
@@ -18,6 +19,7 @@ h1 {
 .menuIcon,
 .searchIcon {
     cursor: pointer;
+		margin-inline: 2rem;
 }
   
 .menuIcon:hover,

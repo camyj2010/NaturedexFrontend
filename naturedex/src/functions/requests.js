@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API = 'http://localhost:3001';
+const API = process.env.REACT_APP_BACKEND_URL;
 
 // POST REQUESTS
 export const loginRequest = async (email, password) => {
@@ -23,7 +23,7 @@ export const uploadImage = async (imageData) => {
       console.error('Error uploading image: ', error);
 	  throw error;
     }
-}
+};
 
 export const sendImageRequest = async (id, imageUrl) => {
 	try {
@@ -33,4 +33,14 @@ export const sendImageRequest = async (id, imageUrl) => {
 		console.error('Error uploading image to backend: ', error);
 		throw error
 	}
-}
+};
+
+// GET REQUESTS
+export const fetchUser = async (id) => {
+	try {
+		const res = await axios.get(`${API}/one/${id}`);
+		return res;
+	} catch (err) {
+		throw err;
+	}
+};
