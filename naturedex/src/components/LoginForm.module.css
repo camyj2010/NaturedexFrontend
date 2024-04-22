@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@400;500;700&display=swap');
 
-body, h1, label, input, button, p, a {
+h1, label, input, button, p {
     font-family: 'Palanquin';
 }
 

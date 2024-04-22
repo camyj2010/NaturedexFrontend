@@ -5,7 +5,8 @@ export const initialUserState = {
 	email: '',
     record: [],
     username: '',
-	id: ''
+	id: '',
+	incremetal:0
 };
 
 export const UserContext = createContext({});
@@ -16,7 +17,7 @@ export const UserProvider = ({children}) => {
 
 	// checks if the user is authenticated or not
 	const isUserAuthenticated = () => {
-		if (!user.username) {
+		if (!user.id) {
 			return false;
 		} else {
 			return true;
@@ -34,7 +35,8 @@ export const UserProvider = ({children}) => {
 				email: data.email,
 				record: data.record,
 				username: data.username,
-				id: data._id
+				id: data._id,
+				incremetal:0
 			};
 			setUser(userData);
 			localStorage.setItem('user', JSON.stringify(data.user));
@@ -49,7 +51,14 @@ export const UserProvider = ({children}) => {
 	const sendImage = async (id, imageUrl) => {
 		const res = await sendImageRequest(id,imageUrl);
 		console.log(res)
-		if (res.message === 'Enlace agregado exitosamente al usuario') {
+		if (res.status === 200) {
+			console.log('entre')
+			const newUser ={
+				incremetal: (user.incremetal)+1,
+				...user
+			}
+			console.log("Soy el nuevo usuario",newUser)
+			setUser(newUser)
 			return res
 		} else {
 			return res

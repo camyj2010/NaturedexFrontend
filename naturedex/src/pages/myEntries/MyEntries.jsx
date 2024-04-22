@@ -14,7 +14,7 @@ const MyEntries = () => {
 		const navigate = useNavigate();
 
 		useEffect(() => {
-			if (!user._id) {
+			if (!user.id) {
 				navigate('/login');
 			}
 		}, [])
