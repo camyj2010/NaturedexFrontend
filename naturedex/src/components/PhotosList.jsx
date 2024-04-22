@@ -11,11 +11,11 @@ export default function PhotosList() {
 
 	useEffect(() => {
 		const userData = async()=>{
-			const res = await fetchUser(user._id)
+			const res = await fetchUser(user.id)
 			const { data } = res
 			setRecords(data.record)
 		}
-		if (user._id) {
+		if (user.id) {
 		userData()
 		}
 	}, [user])

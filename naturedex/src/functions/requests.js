@@ -27,7 +27,7 @@ export const uploadImage = async (imageData) => {
 
 export const sendImageRequest = async (id, imageUrl) => {
 	try {
-		const response = await axios.post(`${API}/picture`, {id, imageUrl});
+		const response = await axios.post(`${API}/picture`, {id: id, link: imageUrl});
 		return response;
 	} catch (error) {
 		console.error('Error uploading image to backend: ', error);
