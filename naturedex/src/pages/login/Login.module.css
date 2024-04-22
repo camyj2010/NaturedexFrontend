@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
 
-body, h1, label, input, button, p, a {
-    font-family: 'Palanquin';
+h1 {
+    font-family: 'Rancho';
 }
 
 .title {
