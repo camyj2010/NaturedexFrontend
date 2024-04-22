@@ -1,11 +1,11 @@
 import {createContext, useState} from 'react';
-import {loginRequest} from '../functions/requests';
+import {loginRequest, sendImageRequest} from '../functions/requests';
 
 export const initialUserState = {
 	email: '',
-	password: '',
     record: [],
-    username: ''
+    username: '',
+	id: ''
 };
 
 export const UserContext = createContext({});
@@ -30,7 +30,13 @@ export const UserProvider = ({children}) => {
         console.log(data)
 
 		if (data.message === "Inicio de sesión exitoso") {
-			setUser(data.user);
+			const userData = {
+				email: data.email,
+				record: data.record,
+				username: data.username,
+				id: data._id
+			};
+			setUser(userData);
 			localStorage.setItem('user', JSON.stringify(data.user));
 			return data;
 		} else {
@@ -39,6 +45,16 @@ export const UserProvider = ({children}) => {
 
 		// setUser({...initialUserState, email, password});
 	};
+
+	const sendImage = async (id, imageUrl) => {
+		const res = await sendImageRequest(id,imageUrl);
+		console.log(res)
+		if (res.message === 'Enlace agregado exitosamente al usuario') {
+			return res
+		} else {
+			return res
+		}
+	}
 
 	const initiateUser = async (initialUser) => {
 		localStorage.setItem('user', JSON.stringify(initialUser));
@@ -57,6 +73,7 @@ export const UserProvider = ({children}) => {
 				user,
 				initiateUser,
 				isUserAuthenticated,
+				sendImage,
 				logout,
 				login,
 			}}
