@@ -9,7 +9,7 @@ const routes = createBrowserRouter(
 	[
 		{
 			path: '/',
-			element: <App />
+			element: <MyEntries />
 		},
 		{
 			path: '/register',
