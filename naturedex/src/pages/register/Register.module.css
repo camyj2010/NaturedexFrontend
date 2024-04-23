@@ -1,0 +1,87 @@
+.myLabel{
+	position: absolute;
+	transform: translate(0,-40px);
+  pointer-events: none;
+  font-size: 22px;
+}
+
+
+.principalContainer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #f5f5f5;
+	padding-bottom: 2em;
+
+}
+.title{
+	font-size: 6em;
+	font-family: Rancho,sans-serif;
+	color: black;
+}
+.formTitle{
+	font-size: 2em;
+	font-family: sans-serif;
+	color: black;
+}
+
+.registerForm{
+	display: flex;
+	width: 80%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--light-green);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.inputContainer{
+	font-family: sans-serif;
+	width: 100%;
+	display: block;
+	font-size: 1em;
+	margin-block: 1.5em;
+}
+
+.inputContainer input{
+	width: 100%;
+	height: 30px;
+	font-size: 1em;
+	border: none;
+	border-radius: 5px;
+	border-bottom: 1px solid black;
+}
+
+.insideForm{
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items:flex-start;
+	justify-content: center;
+}
+
+.registerButton{
+	width: 100%;
+	height: 50px;
+	font-size: 1.5em;
+	background-color: var(--dark-green);
+	color: white;
+	border: none;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.signinMessage {
+    text-align: center;
+    margin-top: 20px;
+    color: #79ac78;
+}
+  
+.signinLink {
+    color: #618264;
+    text-decoration: none;
+    font-weight: bold;
+}

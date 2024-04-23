@@ -1,0 +1,23 @@
+:root{
+	--main-bg-color: #F5F5F5;
+	--dark-green: #618264;
+	--medium-green:#79AC78;
+	--light-green: #B0D9B1;
+	--almost-white-green:#D0E7D2;
+}
+
+@font-face {
+    font-family: Rancho;
+    src: url('./../public/fonts/Rancho-Regular.ttf');
+}
+
+
+body {
+  margin: 0;
+	padding: 0;
+  font-family: -apple-system, Rancho, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
